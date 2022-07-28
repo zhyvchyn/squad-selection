@@ -1,0 +1,20 @@
+.pitch-player {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &--none {
+    background-color: gainsboro;
+  }
+
+  &--bad {
+    background-color: lightpink;
+  }
+
+  &--good {
+    background-color: yellowgreen;
+  }
+}

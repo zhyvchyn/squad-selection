@@ -1,0 +1,35 @@
+.pitch {
+  margin-top: 20px;
+  background-image: url('~static/pitch.png');
+  background-size: contain;
+  width: 400px;
+  height: 600px;
+  position: relative;
+
+  &__gk,
+  &__df,
+  &__mf,
+  &__fw {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__gk {
+    bottom: 20px;
+  }
+
+  &__df {
+    bottom: 140px;
+  }
+
+  &__mf {
+    top: 220px;
+  }
+
+  &__fw {
+    top: 85px;
+  }
+}
