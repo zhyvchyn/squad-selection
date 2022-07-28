@@ -27,5 +27,6 @@ export const formations = {
 export const formationsList = [formations.F433, formations.F442, formations.F532];
 
 export const dndTypes = {
-    ADD_PLAYER: 'add_player'
+    ADD_PLAYER: 'add_player',
+    REMOVE_PLAYER: 'remove_player'
 };

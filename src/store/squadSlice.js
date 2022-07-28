@@ -38,6 +38,19 @@ const squadSlice = createSlice({
                     return currentSquadPlayerNumber;
                 }
             });
+        },
+        removePlayerFromSquad: (state, action) => {
+            const {number} = action.payload;
+            const currentSquad = [...state.currentSquad];
+            const restoredCurrentSquad = Array.from({length: 11}).map((item, index) => currentSquad[index] ?? null);
+
+            state.currentSquad = restoredCurrentSquad.map((currentSquadPlayerNumber) => {
+                if (currentSquadPlayerNumber === number) {
+                    return null;
+                } else {
+                    return currentSquadPlayerNumber;
+                }
+            });
         }
     },
     extraReducers: {
@@ -59,7 +72,7 @@ const squadSlice = createSlice({
     }
 });
 
-export const {setCurrentFormation, addPlayerToSquad} = squadSlice.actions;
+export const {setCurrentFormation, addPlayerToSquad, removePlayerFromSquad} = squadSlice.actions;
 
 export const playersListSelector = (state) => state.squad.players;
 export const currentSquadSelector = (state) => state.squad.currentSquad;

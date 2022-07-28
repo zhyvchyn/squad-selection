@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import {useDrop} from 'react-dnd';
+import {useDrag, useDrop} from 'react-dnd';
 import {dndTypes, selectionQuality} from 'app-constants';
 import {addPlayerToSquad} from 'store/squadSlice';
 
@@ -21,10 +21,6 @@ const PitchPlayer = ({index, player, preferredRole}) => {
 
     const [, dropTargetRef] = useDrop({
         accept: dndTypes.ADD_PLAYER,
-        collect: (monitor) => ({
-            isOver: monitor.isOver(),
-            canDrop: monitor.canDrop()
-        }),
         drop: (item) => {
             const {number} = item;
 
@@ -32,8 +28,18 @@ const PitchPlayer = ({index, player, preferredRole}) => {
         }
     });
 
+    const [, dragSourceRef] = useDrag(() => ({
+        type: dndTypes.REMOVE_PLAYER,
+        item: {number}
+    }), [number]);
+
+    const combinedRef = (ref) => {
+        dropTargetRef(ref);
+        dragSourceRef(ref);
+    };
+
     return (
-        <div ref={dropTargetRef} className={`pitch-player pitch-player--${quality}`}>
+        <div ref={combinedRef} className={`pitch-player pitch-player--${quality}`}>
             {number}
         </div>
     );
